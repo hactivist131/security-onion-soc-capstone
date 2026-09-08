@@ -6,6 +6,9 @@
 
     <title>Security Onion SOC Capstone | Idan E. Ekitela</title>
 
+    <meta name="description"
+          content="Security Onion SOC Capstone Project Documentation by Idan E. Ekitela">
+
     <style>
         * {
             box-sizing: border-box;
@@ -13,192 +16,383 @@
             padding: 0;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             font-family: Arial, Helvetica, sans-serif;
-            background: #0b1220;
-            color: #e5e7eb;
+            background: #071018;
+            color: #e8f0f5;
             line-height: 1.6;
         }
 
-        header {
-            background: linear-gradient(135deg, #111827, #1e3a5f);
-            padding: 70px 20px;
-            text-align: center;
-            border-bottom: 1px solid #334155;
+        a {
+            text-decoration: none;
+            color: inherit;
         }
 
-        header h1 {
-            font-size: 42px;
-            margin-bottom: 15px;
-            color: #ffffff;
+        /* NAVIGATION */
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(5, 12, 18, 0.97);
+            border-bottom: 1px solid #20313d;
+            padding: 15px 6%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
-        header p {
-            font-size: 19px;
-            color: #cbd5e1;
-            max-width: 800px;
-            margin: auto;
+        .logo {
+            font-size: 20px;
+            font-weight: bold;
+            color: #72e6b4;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+        }
+
+        .nav-links a {
+            color: #b9c8d1;
+            font-size: 14px;
+        }
+
+        .nav-links a:hover {
+            color: #72e6b4;
+        }
+
+        /* HERO */
+        .hero {
+            min-height: 82vh;
+            display: flex;
+            align-items: center;
+            padding: 70px 8%;
+            background:
+                radial-gradient(circle at 80% 20%, rgba(52, 211, 153, 0.12), transparent 35%),
+                linear-gradient(135deg, #071018, #0a1720);
+        }
+
+        .hero-content {
+            max-width: 900px;
         }
 
         .badge {
             display: inline-block;
-            margin-top: 20px;
-            padding: 8px 16px;
-            border: 1px solid #38bdf8;
+            border: 1px solid #2e7560;
+            color: #72e6b4;
+            padding: 7px 13px;
             border-radius: 20px;
-            color: #7dd3fc;
+            font-size: 12px;
+            margin-bottom: 22px;
+            letter-spacing: 1px;
+        }
+
+        h1 {
+            font-size: clamp(38px, 6vw, 72px);
+            line-height: 1.05;
+            margin-bottom: 22px;
+        }
+
+        .highlight {
+            color: #72e6b4;
+        }
+
+        .hero p {
+            max-width: 760px;
+            color: #aebdc6;
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 13px 22px;
+            border-radius: 7px;
+            font-weight: bold;
             font-size: 14px;
-        }
-
-        nav {
-            background: #111827;
-            padding: 15px;
-            text-align: center;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            border-bottom: 1px solid #334155;
-        }
-
-        nav a {
-            color: #cbd5e1;
-            text-decoration: none;
-            margin: 0 12px;
-            font-size: 14px;
-        }
-
-        nav a:hover {
-            color: #38bdf8;
-        }
-
-        .container {
-            max-width: 1100px;
-            margin: auto;
-            padding: 50px 20px;
-        }
-
-        .intro {
-            text-align: center;
-            margin-bottom: 45px;
-        }
-
-        .intro h2 {
-            font-size: 30px;
-            margin-bottom: 15px;
-            color: #ffffff;
-        }
-
-        .intro p {
-            color: #cbd5e1;
-            max-width: 850px;
-            margin: auto;
-        }
-
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 20px;
-            margin-top: 30px;
-        }
-
-        .card {
-            background: #111827;
-            border: 1px solid #334155;
-            border-radius: 12px;
-            padding: 25px;
             transition: 0.2s;
         }
 
-        .card:hover {
-            transform: translateY(-4px);
-            border-color: #38bdf8;
+        .btn-primary {
+            background: #72e6b4;
+            color: #06110d;
         }
 
-        .card h3 {
-            color: #7dd3fc;
-            margin-bottom: 10px;
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            background: #8cf0c5;
         }
 
-        .card p {
-            color: #cbd5e1;
-            font-size: 15px;
+        .btn-secondary {
+            border: 1px solid #3a4c57;
+            color: #dce7ed;
         }
 
-        .case {
-            background: #111827;
-            border-left: 4px solid #38bdf8;
-            padding: 25px;
-            margin-top: 40px;
-            border-radius: 8px;
+        .btn-secondary:hover {
+            border-color: #72e6b4;
+            color: #72e6b4;
         }
 
-        .case h2 {
-            color: #ffffff;
-            margin-bottom: 15px;
+        /* GENERAL */
+        section {
+            padding: 75px 8%;
         }
 
-        .case strong {
-            color: #7dd3fc;
+        .section-title {
+            font-size: 32px;
+            margin-bottom: 12px;
         }
 
+        .section-subtitle {
+            color: #94a7b2;
+            margin-bottom: 35px;
+        }
+
+        /* STATS */
         .stats {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 15px;
-            margin-top: 30px;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 18px;
+            margin-top: -45px;
+            position: relative;
         }
 
         .stat {
-            background: #0f172a;
+            background: #0c1922;
+            border: 1px solid #223541;
+            border-radius: 12px;
             padding: 25px;
             text-align: center;
-            border: 1px solid #334155;
-            border-radius: 10px;
         }
 
-        .stat .number {
-            font-size: 32px;
+        .stat-number {
+            display: block;
+            font-size: 34px;
             font-weight: bold;
-            color: #38bdf8;
+            color: #72e6b4;
         }
 
-        .stat p {
-            color: #94a3b8;
+        .stat-label {
+            color: #98aab5;
+            font-size: 13px;
+        }
+
+        /* SUMMARY */
+        .summary {
+            background: #09141c;
+        }
+
+        .summary-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+        }
+
+        .card {
+            background: #0c1922;
+            border: 1px solid #223541;
+            border-radius: 12px;
+            padding: 25px;
+        }
+
+        .card h3 {
+            color: #72e6b4;
+            margin-bottom: 12px;
+        }
+
+        .card p {
+            color: #b5c3cb;
+        }
+
+        /* FINDINGS */
+        .findings-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .finding {
+            background: #0c1922;
+            border: 1px solid #223541;
+            border-radius: 12px;
+            padding: 25px;
+        }
+
+        .finding h3 {
+            margin-bottom: 10px;
+            color: #72e6b4;
+        }
+
+        .finding p {
+            color: #aebdc6;
+        }
+
+        .finding ul {
+            margin-top: 12px;
+            padding-left: 20px;
+            color: #b7c5cd;
+        }
+
+        .finding li {
+            margin-bottom: 7px;
+        }
+
+        /* INVESTIGATION */
+        .investigation {
+            background: #09141c;
+        }
+
+        .timeline {
+            border-left: 2px solid #315346;
+            padding-left: 25px;
+            max-width: 900px;
+        }
+
+        .timeline-item {
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        .timeline-item::before {
+            content: "";
+            width: 11px;
+            height: 11px;
+            background: #72e6b4;
+            border-radius: 50%;
+            position: absolute;
+            left: -32px;
+            top: 7px;
+        }
+
+        .timeline-item h3 {
+            color: #72e6b4;
+        }
+
+        .timeline-item p {
+            color: #aebdc6;
+        }
+
+        /* SEVERITY */
+        .severity-box {
+            max-width: 800px;
+            background: #0c1922;
+            border: 1px solid #223541;
+            border-radius: 12px;
+            padding: 35px;
+        }
+
+        .severity {
+            font-size: 42px;
+            font-weight: bold;
+            color: #72e6b4;
+            margin-bottom: 10px;
+        }
+
+        .severity-box p {
+            color: #aebdc6;
+        }
+
+        /* ACTIONS */
+        .actions {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+        }
+
+        .action {
+            background: #0c1922;
+            border: 1px solid #223541;
+            border-radius: 12px;
+            padding: 22px;
+        }
+
+        .priority {
+            font-size: 12px;
+            font-weight: bold;
+            color: #72e6b4;
+            margin-bottom: 8px;
+        }
+
+        .action h3 {
+            margin-bottom: 8px;
+        }
+
+        .action p {
+            color: #9eafb9;
             font-size: 14px;
         }
 
-        .button {
-            display: inline-block;
-            margin-top: 20px;
-            padding: 12px 22px;
-            background: #0284c7;
-            color: white;
-            text-decoration: none;
-            border-radius: 7px;
-            font-weight: bold;
-        }
-
-        .button:hover {
-            background: #0369a1;
-        }
-
-        footer {
+        /* DOCUMENTATION CTA */
+        .documentation {
             text-align: center;
-            padding: 30px 20px;
-            margin-top: 50px;
-            background: #111827;
-            border-top: 1px solid #334155;
-            color: #94a3b8;
+            background:
+                radial-gradient(circle at center, rgba(52, 211, 153, 0.08), transparent 55%),
+                #071018;
         }
 
-        @media (max-width: 700px) {
-            header h1 {
-                font-size: 30px;
+        .documentation-box {
+            max-width: 850px;
+            margin: auto;
+            border: 1px solid #2c4d40;
+            border-radius: 15px;
+            padding: 45px 30px;
+            background: #0b1820;
+        }
+
+        .documentation-box h2 {
+            font-size: 34px;
+            margin-bottom: 15px;
+        }
+
+        .documentation-box p {
+            color: #aebdc6;
+            margin-bottom: 25px;
+        }
+
+        /* FOOTER */
+        footer {
+            border-top: 1px solid #20313d;
+            background: #050c12;
+            padding: 30px 8%;
+            color: #81929d;
+            text-align: center;
+            font-size: 13px;
+        }
+
+        footer strong {
+            color: #cbd7dd;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 850px) {
+            .stats,
+            .summary-grid,
+            .findings-grid,
+            .actions {
+                grid-template-columns: 1fr;
             }
 
-            nav a {
-                display: inline-block;
-                margin: 5px;
+            .nav-links {
+                display: none;
+            }
+
+            .hero {
+                min-height: 75vh;
+                padding: 55px 7%;
+            }
+
+            section {
+                padding: 55px 7%;
             }
         }
     </style>
@@ -206,306 +400,527 @@
 
 <body>
 
-<header id="home">
-    <h1>Security Onion SOC Capstone</h1>
+<!-- NAVIGATION -->
+<nav>
+    <div class="logo">SECURITY ONION SOC</div>
 
-    <p>
-        Investigation Working Document & Findings Report
-    </p>
+    <div class="nav-links">
+        <a href="#overview">Overview</a>
+        <a href="#findings">Findings</a>
+        <a href="#timeline">Timeline</a>
+        <a href="#actions">Actions</a>
+        <a href="documentation.html">Documentation</a>
+    </div>
+</nav>
 
-    <p>
-        Network Security Monitoring · Alert Triage · Incident Investigation
-    </p>
 
-    <div class="badge">
-        SOC Analyst Capstone Project
+<!-- HERO -->
+<header class="hero">
+    <div class="hero-content">
+
+        <span class="badge">SOC CAPSTONE PROJECT · INCIDENT INVESTIGATION</span>
+
+        <h1>
+            Security Onion
+            <span class="highlight">SOC Investigation</span>
+        </h1>
+
+        <p>
+            Network Security Monitoring, Alert Triage and Incident Investigation
+            conducted using Security Onion, Suricata, Zeek and Wireshark.
+        </p>
+
+        <p>
+            <strong>Analyst:</strong> Idan E. Ekitela
+            &nbsp; | &nbsp;
+            <strong>Class:</strong> Cyber Security
+        </p>
+
+        <div class="buttons">
+            <a class="btn btn-primary" href="documentation.html">
+                View Full Documentation
+            </a>
+
+            <a class="btn btn-secondary" href="#overview">
+                View Investigation
+            </a>
+        </div>
+
     </div>
 </header>
 
-<nav>
-    <a href="#home">Home</a>
-    <a href="#overview">Overview</a>
-    <a href="#investigation">Investigation</a>
-    <a href="#findings">Findings</a>
-    <a href="#recommendations">Recommendations</a>
-    <a href="documentation.html">Full Documentation</a>
-</nav>
 
-<main class="container">
+<!-- STATISTICS -->
+<section style="padding-top: 0;">
+    <div class="stats">
 
-    <section class="intro" id="overview">
+        <div class="stat">
+            <span class="stat-number">42</span>
+            <span class="stat-label">Alerts</span>
+        </div>
 
-        <h2>Project Overview</h2>
+        <div class="stat">
+            <span class="stat-number">7</span>
+            <span class="stat-label">Alert Groups</span>
+        </div>
+
+        <div class="stat">
+            <span class="stat-number">4</span>
+            <span class="stat-label">Database Ports Targeted</span>
+        </div>
+
+        <div class="stat">
+            <span class="stat-number">MEDIUM</span>
+            <span class="stat-label">Final Severity</span>
+        </div>
+
+    </div>
+</section>
+
+
+<!-- OVERVIEW -->
+<section class="summary" id="overview">
+
+    <h2 class="section-title">01 · Investigation Overview</h2>
+
+    <p class="section-subtitle">
+        Security Onion SOC Capstone Project
+    </p>
+
+    <div class="summary-grid">
+
+        <div class="card">
+            <h3>Project Objective</h3>
+
+            <p>
+                The project investigates suspicious network activity using
+                Security Onion and associated security monitoring tools.
+                The investigation focuses on alert triage, network traffic
+                analysis and incident classification.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>Security Onion Environment</h3>
+
+            <p>
+                Security Onion was used to collect, index and analyze
+                network security evidence including Suricata IDS alerts,
+                Zeek logs and available PCAP evidence.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>Investigation Role</h3>
+
+            <p>
+                The analyst role was SOC analyst, performing alert triage
+                and incident investigation using Security Onion, Zeek,
+                Suricata and Wireshark.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>Suspected Host</h3>
+
+            <p>
+                The investigation focuses on host
+                <strong>192.168.194.129</strong>, associated with repeated
+                database-port scanning alerts.
+            </p>
+        </div>
+
+    </div>
+</section>
+
+
+<!-- FINDINGS -->
+<section id="findings">
+
+    <h2 class="section-title">02 · Key Investigation Findings</h2>
+
+    <p class="section-subtitle">
+        Evidence collected from the available Security Onion investigation data.
+    </p>
+
+    <div class="findings-grid">
+
+        <div class="finding">
+            <h3>Suricata</h3>
+
+            <p>
+                Suricata generated multiple alerts associated with
+                database service ports.
+            </p>
+
+            <ul>
+                <li>MSSQL — TCP 1433</li>
+                <li>Oracle SQL — TCP 1521</li>
+                <li>PostgreSQL — TCP 5432</li>
+                <li>MySQL — TCP 3306</li>
+            </ul>
+        </div>
+
+
+        <div class="finding">
+            <h3>Zeek</h3>
+
+            <p>
+                Zeek analysis identified the connection to MSSQL port
+                1433 as suspicious. The investigation identified
+                conn.log as the next pivot for validating repeated
+                connection attempts.
+            </p>
+        </div>
+
+
+        <div class="finding">
+            <h3>Wireshark</h3>
+
+            <p>
+                The available five-tuple information confirmed a TCP
+                connection from the suspected host to the internal
+                gateway on MSSQL port 1433.
+            </p>
+        </div>
+
+
+        <div class="finding">
+            <h3>DNS Activity</h3>
+
+            <p>
+                A DNS query involving a <strong>.cfd</strong> TLD was
+                reported. Detailed DNS evidence was not available,
+                therefore the activity requires further review.
+            </p>
+        </div>
+
+    </div>
+</section>
+
+
+<!-- INITIAL ALERT -->
+<section class="summary">
+
+    <h2 class="section-title">03 · Initial Alert</h2>
+
+    <p class="section-subtitle">
+        Primary alert that initiated the investigation.
+    </p>
+
+    <div class="card">
+
+        <h3>ET SCAN Suspicious inbound to MSSQL port 1433</h3>
 
         <p>
-            This capstone project demonstrates a Security Operations Center
-            investigation using Security Onion, Suricata, Zeek and Wireshark.
-            The investigation focuses on suspicious network activity involving
-            database service ports and related DNS activity.
+            <strong>Timestamp:</strong>
+            2026-07-21T11:58:14.917Z
         </p>
 
-        <div class="stats">
-
-            <div class="stat">
-                <div class="number">42</div>
-                <p>Alerts</p>
-            </div>
-
-            <div class="stat">
-                <div class="number">7</div>
-                <p>Alert Groups</p>
-            </div>
-
-            <div class="stat">
-                <div class="number">4</div>
-                <p>Database Ports</p>
-            </div>
-
-            <div class="stat">
-                <div class="number">MEDIUM</div>
-                <p>Final Severity</p>
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <section id="investigation">
-
-        <div class="case">
-
-            <h2>Investigation Case</h2>
-
-            <p>
-                <strong>Incident:</strong>
-                Database Port Scanning Investigation
-            </p>
-
-            <p>
-                <strong>Detection:</strong>
-                Suricata via Security Onion
-            </p>
-
-            <p>
-                <strong>Suspected Host:</strong>
-                192.168.194.129
-            </p>
-
-            <p>
-                <strong>Target:</strong>
-                192.168.194.1
-            </p>
-
-            <p>
-                <strong>Initial Alert:</strong>
-                ET SCAN suspicious inbound connection to MSSQL port 1433
-            </p>
-
-            <p>
-                <strong>Classification:</strong>
-                Suspicious
-            </p>
-
-            <p>
-                <strong>Confidence:</strong>
-                Medium
-            </p>
-
-        </div>
-
-    </section>
-
-
-    <section id="findings">
-
-        <div class="intro" style="margin-top:60px; margin-bottom:20px;">
-
-            <h2>Investigation Findings</h2>
-
-            <p>
-                The investigation correlated available Security Onion,
-                Suricata, Zeek and Wireshark evidence.
-            </p>
-
-        </div>
-
-        <div class="grid">
-
-            <div class="card">
-                <h3>Suricata</h3>
-
-                <p>
-                    Multiple alerts identified activity targeting database
-                    service ports including MSSQL 1433, Oracle 1521,
-                    MySQL 3306 and PostgreSQL 5432.
-                </p>
-            </div>
-
-            <div class="card">
-                <h3>Zeek</h3>
-
-                <p>
-                    Zeek logs were identified as an important investigation
-                    pivot for validating repeated connections and DNS activity.
-                    Detailed records were incomplete in the available evidence.
-                </p>
-            </div>
-
-            <div class="card">
-                <h3>Wireshark</h3>
-
-                <p>
-                    Available five-tuple information confirmed the MSSQL TCP
-                    flow associated with the initial Suricata alert.
-                </p>
-            </div>
-
-            <div class="card">
-                <h3>IOC Analysis</h3>
-
-                <p>
-                    The primary indicator was the suspected host
-                    192.168.194.129, with additional indicators involving
-                    database ports and reported .cfd DNS activity.
-                </p>
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <section>
-
-        <div class="case">
-
-            <h2>Network Activity</h2>
-
-            <p>
-                The documented activity began with a connection to MSSQL
-                port 1433 at 11:58:14 UTC on 21 July 2026.
-            </p>
-
-            <p>
-                Additional activity targeted Oracle port 1521,
-                PostgreSQL port 5432 and MySQL port 3306.
-            </p>
-
-            <p>
-                A DNS query involving a .cfd TLD was also reported.
-            </p>
-
-        </div>
-
-    </section>
-
-
-    <section id="recommendations">
-
-        <div class="intro" style="margin-top:60px; margin-bottom:20px;">
-
-            <h2>Recommended Actions</h2>
-
-        </div>
-
-        <div class="grid">
-
-            <div class="card">
-                <h3>01 — Investigate Host</h3>
-
-                <p>
-                    Investigate 192.168.194.129 and identify the process,
-                    user and purpose responsible for the activity.
-                </p>
-            </div>
-
-            <div class="card">
-                <h3>02 — Review Zeek</h3>
-
-                <p>
-                    Review Zeek connection and DNS logs to validate
-                    repeated connections and investigate DNS activity.
-                </p>
-            </div>
-
-            <div class="card">
-                <h3>03 — Restrict DB Ports</h3>
-
-                <p>
-                    Restrict unauthorized access to database ports
-                    1433, 1521, 3306 and 5432.
-                </p>
-            </div>
-
-            <div class="card">
-                <h3>04 — Collect Endpoint Logs</h3>
-
-                <p>
-                    Correlate endpoint evidence with Security Onion,
-                    Suricata, Zeek and Wireshark data.
-                </p>
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <section>
-
-        <div class="case">
-
-            <h2>Final Conclusion</h2>
-
-            <p>
-                The available evidence supports a suspicious classification
-                rather than a confirmed compromise.
-            </p>
-
-            <p>
-                The repeated targeting of multiple database service ports
-                indicates possible scanning or probing activity.
-            </p>
-
-            <p>
-                The incident remains open because detailed endpoint,
-                Zeek and PCAP evidence was incomplete.
-            </p>
-
-            <p>
-                <strong>Final Severity:</strong> Medium
-            </p>
-
-            <p>
-                <strong>Confidence Level:</strong> Medium
-            </p>
-
-        </div>
-
-    </section>
-
-
-    <section style="text-align:center; margin-top:50px;">
-
-        <h2>Complete Project Documentation</h2>
-
-        <p style="margin-top:10px; color:#94a3b8;">
-            View the complete capstone documentation and investigation report.
+        <p>
+            <strong>Source:</strong>
+            192.168.194.129
         </p>
 
-        <a class="button" href="documentation.html">
-            View Full Documentation
+        <p>
+            <strong>Destination:</strong>
+            192.168.194.1
+        </p>
+
+        <p>
+            <strong>Source Port:</strong>
+            50924
+        </p>
+
+        <p>
+            <strong>Destination Port:</strong>
+            1433 (MSSQL)
+        </p>
+
+        <p>
+            <strong>Protocol:</strong>
+            TCP
+        </p>
+
+        <p>
+            <strong>Severity:</strong>
+            Medium
+        </p>
+
+        <p>
+            <strong>Initial Classification:</strong>
+            Needs Review
+        </p>
+
+    </div>
+</section>
+
+
+<!-- TIMELINE -->
+<section id="timeline">
+
+    <h2 class="section-title">04 · Network Activity Timeline</h2>
+
+    <p class="section-subtitle">
+        Documented activity observed on 21 July 2026.
+    </p>
+
+    <div class="timeline">
+
+        <div class="timeline-item">
+            <h3>11:58:14 UTC — MSSQL 1433</h3>
+            <p>
+                Suricata generated the first documented suspicious
+                connection alert involving MSSQL port 1433.
+            </p>
+        </div>
+
+        <div class="timeline-item">
+            <h3>Oracle 1521</h3>
+            <p>
+                Additional activity targeted the Oracle database service
+                port 1521.
+            </p>
+        </div>
+
+        <div class="timeline-item">
+            <h3>PostgreSQL 5432</h3>
+            <p>
+                A further database-port alert targeted PostgreSQL
+                port 5432.
+            </p>
+        </div>
+
+        <div class="timeline-item">
+            <h3>MySQL 3306</h3>
+            <p>
+                MySQL port 3306 was also targeted, strengthening the
+                observed multi-database-port scanning pattern.
+            </p>
+        </div>
+
+        <div class="timeline-item">
+            <h3>.cfd DNS Activity</h3>
+            <p>
+                A DNS query to a .cfd TLD was reported. The exact
+                domain and complete DNS packet evidence were not supplied.
+            </p>
+        </div>
+
+        <div class="timeline-item">
+            <h3>Investigation Status</h3>
+            <p>
+                The activity was classified as suspicious and remained
+                open pending additional endpoint, Zeek and PCAP evidence.
+            </p>
+        </div>
+
+    </div>
+</section>
+
+
+<!-- IOC -->
+<section class="summary">
+
+    <h2 class="section-title">05 · IOC Summary</h2>
+
+    <p class="section-subtitle">
+        Indicators identified during the investigation.
+    </p>
+
+    <div class="findings-grid">
+
+        <div class="finding">
+            <h3>Source Host</h3>
+            <p>192.168.194.129</p>
+        </div>
+
+        <div class="finding">
+            <h3>Target Host</h3>
+            <p>192.168.194.1</p>
+        </div>
+
+        <div class="finding">
+            <h3>Database Ports</h3>
+            <p>1433 · 1521 · 3306 · 5432</p>
+        </div>
+
+        <div class="finding">
+            <h3>Additional Indicator</h3>
+            <p>.cfd TLD — Suricata SID 2065867</p>
+        </div>
+
+    </div>
+</section>
+
+
+<!-- SEVERITY -->
+<section>
+
+    <h2 class="section-title">06 · Incident Severity</h2>
+
+    <p class="section-subtitle">
+        Final assessment based on the available evidence.
+    </p>
+
+    <div class="severity-box">
+
+        <div class="severity">MEDIUM</div>
+
+        <p>
+            The investigation identified suspicious scanning with possible
+            database targeting. The evidence strength and confidence were
+            assessed as Medium because Zeek, PCAP and endpoint details were
+            incomplete.
+        </p>
+
+        <br>
+
+        <p>
+            The documented scope was a single host, with medium business
+            impact. No successful database access or confirmed compromise
+            was established from the supplied evidence.
+        </p>
+
+    </div>
+</section>
+
+
+<!-- ACTIONS -->
+<section class="summary" id="actions">
+
+    <h2 class="section-title">07 · Recommended Actions</h2>
+
+    <p class="section-subtitle">
+        Recommended remediation and follow-up activities.
+    </p>
+
+    <div class="actions">
+
+        <div class="action">
+            <div class="priority">HIGH PRIORITY</div>
+            <h3>Investigate the Host</h3>
+            <p>
+                Investigate 192.168.194.129 and confirm the process,
+                user and purpose responsible for the activity.
+            </p>
+        </div>
+
+        <div class="action">
+            <div class="priority">HIGH PRIORITY</div>
+            <h3>Review Zeek conn.log</h3>
+            <p>
+                Review connection records to validate repeated
+                database connection attempts and the scanning pattern.
+            </p>
+        </div>
+
+        <div class="action">
+            <div class="priority">HIGH PRIORITY</div>
+            <h3>Restrict Database Ports</h3>
+            <p>
+                Restrict unauthorized access to database ports
+                1433, 1521, 3306 and 5432.
+            </p>
+        </div>
+
+        <div class="action">
+            <div class="priority">MEDIUM PRIORITY</div>
+            <h3>Review .cfd DNS Activity</h3>
+            <p>
+                Investigate the reported DNS activity and correlate it
+                with available DNS and endpoint logs.
+            </p>
+        </div>
+
+        <div class="action">
+            <div class="priority">MEDIUM PRIORITY</div>
+            <h3>Collect Endpoint Logs</h3>
+            <p>
+                Collect endpoint evidence to identify the process and
+                user responsible for the network activity.
+            </p>
+        </div>
+
+        <div class="action">
+            <div class="priority">LOW PRIORITY</div>
+            <h3>Continue Monitoring</h3>
+            <p>
+                Continue monitoring for recurrence and correlate future
+                activity with Security Onion evidence.
+            </p>
+        </div>
+
+    </div>
+</section>
+
+
+<!-- CONCLUSION -->
+<section>
+
+    <h2 class="section-title">08 · Final Conclusion</h2>
+
+    <div class="card">
+
+        <h3>Investigation Classification: Suspicious</h3>
+
+        <p>
+            The available evidence supports suspicious database-port
+            scanning activity associated with 192.168.194.129.
+            Multiple Suricata alerts targeted database ports 1433,
+            1521, 5432 and 3306.
+        </p>
+
+        <br>
+
+        <p>
+            However, the available Zeek, PCAP and endpoint evidence
+            was incomplete. Therefore, the investigation does not
+            establish a confirmed compromise.
+        </p>
+
+        <br>
+
+        <p>
+            The incident should remain open for further investigation
+            and escalation if additional evidence confirms unauthorized
+            or malicious activity.
+        </p>
+
+    </div>
+</section>
+
+
+<!-- DOCUMENTATION -->
+<section class="documentation">
+
+    <div class="documentation-box">
+
+        <h2>Complete Capstone Documentation</h2>
+
+        <p>
+            View the complete investigation working document and findings
+            report, including the SOC environment summary, alert triage,
+            Zeek analysis, Suricata analysis, Wireshark analysis, IOC table,
+            timeline, severity assessment, remediation plan, executive
+            summary, technical incident report, final presentation outline
+            and submission checklist.
+        </p>
+
+        <a class="btn btn-primary" href="documentation.html">
+            Open Full Documentation
         </a>
 
-    </section>
+    </div>
 
-</main>
+</section>
 
+
+<!-- FOOTER -->
 <footer>
 
     <p>
-        Security Onion SOC Capstone Project
+        <strong>Security Onion SOC Capstone Project</strong>
     </p>
 
     <p>
@@ -513,7 +928,7 @@
     </p>
 
     <p>
-        2026
+        Investigation Working Document & Findings Report
     </p>
 
 </footer>
